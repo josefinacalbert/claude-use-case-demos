@@ -1262,6 +1262,207 @@
             background: #faf9f8;
         }
 
+        /* MCP Panel */
+        .mcp-panel {
+            background: white;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 12px;
+            margin: 20px 0;
+            overflow: hidden;
+            transform: translateY(-10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .mcp-panel.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .mcp-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mcp-icon {
+            width: 24px;
+            height: 24px;
+            background: #bf7358;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .mcp-title {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        .mcp-content {
+            padding: 20px;
+        }
+
+        .mcp-connector {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px;
+            background: #faf9f8;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            border: 1px solid transparent;
+            transition: all 0.2s ease;
+        }
+
+        .mcp-connector.enabled {
+            background: #f0f9f2;
+            border-color: rgba(52, 199, 89, 0.2);
+        }
+
+        .connector-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .connector-icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .google-drive-icon {
+            background: linear-gradient(45deg, #4285f4, #0f9d58, #f4b400);
+        }
+
+        .connector-info h4 {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1a1a1a;
+            margin-bottom: 2px;
+        }
+
+        .connector-info p {
+            font-size: 13px;
+            color: #6b6b6f;
+            margin: 0;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 48px;
+            height: 24px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.enabled {
+            background: #34c759;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .toggle-switch.enabled .toggle-slider {
+            transform: translateX(24px);
+        }
+
+        .toggle-pulse {
+            animation: toggleGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes toggleGlow {
+            0% { 
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: 0 0 0 0 rgba(191, 115, 88, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                background: rgba(191, 115, 88, 0.3);
+                box-shadow: 0 0 15px 3px rgba(191, 115, 88, 0.2), 0 0 30px 6px rgba(212, 130, 74, 0.1);
+                transform: scale(1.05);
+            }
+            100% { 
+                background: rgba(0, 0, 0, 0.1);
+                box-shadow: 0 0 0 0 rgba(191, 115, 88, 0.4);
+                transform: scale(1);
+            }
+        }
+
+        .mcp-nudge {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            background: rgba(191, 115, 88, 0.08);
+            border-left: 3px solid #bf7358;
+            margin: 20px 0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #3d3d40;
+            position: relative;
+            width: 100%;
+        }
+
+        .nudge-arrow {
+            color: #bf7358;
+            font-weight: 600;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-4px); }
+            60% { transform: translateY(-2px); }
+        }
+
+        .blink {
+            animation: buttonGlow 2s ease-in-out infinite;
+        }
+
+        @keyframes buttonGlow {
+            0% { 
+                background: white;
+                border-color: rgba(0, 0, 0, 0.08);
+                box-shadow: 0 0 0 0 rgba(191, 115, 88, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                background: rgba(191, 115, 88, 0.1);
+                border-color: rgba(191, 115, 88, 0.3);
+                box-shadow: 0 0 15px 3px rgba(191, 115, 88, 0.2), 0 0 30px 6px rgba(212, 130, 74, 0.1);
+                transform: scale(1.05);
+            }
+            100% { 
+                background: white;
+                border-color: rgba(0, 0, 0, 0.08);
+                box-shadow: 0 0 0 0 rgba(191, 115, 88, 0.4);
+                transform: scale(1);
+            }
+        }
+
         /* Chat Input Section */
         .chat-input-section {
             margin-top: 28px;
@@ -1496,77 +1697,92 @@
                                 <div class="carousel-dot active" onclick="showSlide(0)"></div>
                                 <div class="carousel-dot" onclick="showSlide(1)"></div>
                                 <div class="carousel-dot" onclick="showSlide(2)"></div>
+                                <div class="carousel-dot" onclick="showSlide(3)"></div>
                             </div>
                         </div>
                         <div class="carousel-slides">
                             <div class="carousel-slide active">
                                 <div class="output-preview">
-                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px;">Style Analysis Report</h3>
+                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px; color: #bf7358;">📊 Content Analysis</h3>
                                     <div class="mini-stats">
                                         <div class="mini-stat">
                                             <div class="mini-stat-value">383</div>
                                             <div class="mini-stat-label">Documents</div>
                                         </div>
                                         <div class="mini-stat">
-                                            <div class="mini-stat-value">72%</div>
-                                            <div class="mini-stat-label">Consistency</div>
+                                            <div class="mini-stat-value">87%</div>
+                                            <div class="mini-stat-label">Active Voice</div>
                                         </div>
                                     </div>
                                     <div class="mini-principle">
-                                        <strong>Your Voice Profile:</strong><br>
-                                        Professional yet approachable, data-driven, action-oriented
+                                        <strong>Voice Identified:</strong><br>
+                                        Professional yet approachable, data-driven
                                     </div>
                                     <div class="mini-principle">
-                                        <strong>Top Pattern:</strong><br>
-                                        You lead 87% of sentences with active voice and concrete benefits
+                                        <strong>Key Insights:</strong><br>
+                                        78% include metrics, action-oriented CTAs
                                     </div>
                                 </div>
                             </div>
                             <div class="carousel-slide">
                                 <div class="output-preview">
-                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px;">Writing Guidelines</h3>
+                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px; color: #bf7358;">📝 Style Guide</h3>
                                     <div class="mini-principle">
-                                        <strong>Blog Posts:</strong><br>
-                                        • Hook within first 50 words<br>
-                                        • Data point every 2 paragraphs<br>
-                                        • Clear CTA in conclusion
+                                        <strong>Core Principles:</strong><br>
+                                        • Professional yet approachable tone<br>
+                                        • Data-driven & credible claims<br>
+                                        • Clear and scannable format
                                     </div>
                                     <div class="mini-principle">
-                                        <strong>Emails:</strong><br>
-                                        • Subject: 6-10 words max<br>
-                                        • Purpose in first line<br>
-                                        • Bullet points for clarity
+                                        <strong>Channel Guidelines:</strong><br>
+                                        • Email: 6-10 word subjects<br>
+                                        • Blog: Hook in 50 words<br>
+                                        • Social: Question openers
                                     </div>
                                     <div class="mini-principle">
-                                        <strong>Social Media:</strong><br>
-                                        • Question or stat opener<br>
-                                        • 1-2 emojis maximum<br>
-                                        • Engagement prompt at end
+                                        <strong>Quick Checklist:</strong><br>
+                                        Active voice, reader value, under 20 words
                                     </div>
                                 </div>
                             </div>
                             <div class="carousel-slide">
                                 <div class="output-preview">
-                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px;">Ready Templates</h3>
-                                    <div style="background: #faf9f8; padding: 14px; border-radius: 6px; margin-bottom: 12px;">
-                                        <strong style="font-size: 13px;">Blog Opening Formula:</strong><br>
-                                        <em style="color: #6b6b6f; font-size: 12px; line-height: 1.5;">
-                                        "[Surprising stat]? [Problem statement]. Here's how [solution preview]..."
+                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px; color: #bf7358;">📧 Email Templates</h3>
+                                    <div style="background: #f0f9f2; border-left: 3px solid #34c759; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                                        <strong style="font-size: 13px; color: #2e7d32;">Welcome Email</strong><br>
+                                        <em style="color: #5f6368; font-size: 12px; line-height: 1.5;">
+                                        Subject: "Welcome to [Company] - Your journey starts here"<br>
+                                        Personalized onboarding with clear next steps
                                         </em>
                                     </div>
-                                    <div style="background: #faf9f8; padding: 14px; border-radius: 6px; margin-bottom: 12px;">
-                                        <strong style="font-size: 13px;">Email Subject Lines:</strong><br>
-                                        <em style="color: #6b6b6f; font-size: 12px; line-height: 1.5;">
-                                        "Your [benefit] + [number] [value items]"<br>
-                                        "[Action] to [achieve outcome] by [timeframe]"
+                                    <div style="background: #f0f9f2; border-left: 3px solid #34c759; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
+                                        <strong style="font-size: 13px; color: #2e7d32;">Product Update</strong><br>
+                                        <em style="color: #5f6368; font-size: 12px; line-height: 1.5;">
+                                        Feature benefits with time savings metrics
                                         </em>
                                     </div>
-                                    <div style="background: #faf9f8; padding: 14px; border-radius: 6px;">
-                                        <strong style="font-size: 13px;">Social Hook:</strong><br>
-                                        <em style="color: #6b6b6f; font-size: 12px; line-height: 1.5;">
-                                        "Ever wonder why [common issue]?<br>
-                                        We analyzed [number] [items] and found..."
+                                    <div style="background: #f0f9f2; border-left: 3px solid #34c759; padding: 12px; border-radius: 6px;">
+                                        <strong style="font-size: 13px; color: #2e7d32;">Re-engagement</strong><br>
+                                        <em style="color: #5f6368; font-size: 12px; line-height: 1.5;">
+                                        Data-driven check-in with actionable solutions
                                         </em>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="carousel-slide">
+                                <div class="output-preview">
+                                    <h3 style="font-family: Georgia, serif; font-size: 18px; margin-bottom: 16px; color: #bf7358;">🎯 Training Deck</h3>
+                                    <div style="background: #fff5f5; border: 1px solid rgba(191, 115, 88, 0.2); padding: 16px; border-radius: 8px; margin-bottom: 12px; text-align: center;">
+                                        <div style="background: #bf7358; color: white; padding: 8px 12px; border-radius: 4px; display: inline-block; margin-bottom: 8px; font-size: 12px; font-weight: 600;">SLIDE 1/15</div>
+                                        <div style="font-size: 16px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px;">Writing Style Guide</div>
+                                        <div style="font-size: 12px; color: #6b6b6f;">Team Training Session</div>
+                                    </div>
+                                    <div class="mini-principle">
+                                        <strong>Includes:</strong><br>
+                                        • Voice principles with examples<br>
+                                        • Interactive practice exercises<br>
+                                        • Common mistakes to avoid<br>
+                                        • Ready-to-use checklists
                                     </div>
                                 </div>
                             </div>
@@ -1597,42 +1813,93 @@
 
         <!-- Chat Section -->
         <div class="chat-section" id="chat-section">
-            <!-- First User Message -->
-            <div class="message message-user">
-                <div class="message-text">
-                    I need to develop a consistent writing voice for my company's content. Can you analyze these sample documents and create a comprehensive style guide?
-                </div>
-                <div class="attachments-row">
-                    <div class="attachment-item">
-                        <div class="attachment-icon">PDF</div>
-                        <div class="attachment-details">
-                            <div class="attachment-name">Blog_Posts_Q3</div>
-                            <div class="attachment-meta">2.4 MB</div>
-                        </div>
+
+            <!-- Chat Input Section with preloaded content -->
+            <div class="chat-input-section">
+                <div class="chat-input-container" style="padding: 20px; min-height: 120px; align-items: flex-start;">
+                    <div class="input-left">
+                        <button class="input-btn blink" id="plus-btn" onclick="showMCPPanel()">+</button>
                     </div>
-                    <div class="attachment-item">
-                        <div class="attachment-icon">DOC</div>
-                        <div class="attachment-details">
-                            <div class="attachment-name">Email_Templates</div>
-                            <div class="attachment-meta">847 KB</div>
+                    <div class="input-field-container" style="flex: 1;">
+                        <!-- Preloaded attachments -->
+                        <div class="attachments-row" style="margin-bottom: 16px;">
+                            <div class="attachment-item">
+                                <div class="attachment-icon">PDF</div>
+                                <div class="attachment-details">
+                                    <div class="attachment-name">Blog_Posts_Q3</div>
+                                    <div class="attachment-meta">2.4 MB</div>
+                                </div>
+                            </div>
+                            <div class="attachment-item">
+                                <div class="attachment-icon">DOC</div>
+                                <div class="attachment-details">
+                                    <div class="attachment-name">Email_Templates</div>
+                                    <div class="attachment-meta">847 KB</div>
+                                </div>
+                            </div>
+                            <div class="attachment-item">
+                                <div class="attachment-icon">TXT</div>
+                                <div class="attachment-details">
+                                    <div class="attachment-name">Social_Media_Posts</div>
+                                    <div class="attachment-meta">156 KB</div>
+                                </div>
+                            </div>
                         </div>
+                        <!-- Preloaded text -->
+                        <textarea class="input-field" id="input-field-1" rows="3" style="resize: none;">I need to develop a consistent writing voice for my company's content. Can you analyze these sample documents and create a comprehensive style guide?</textarea>
                     </div>
-                    <div class="attachment-item">
-                        <div class="attachment-icon">TXT</div>
-                        <div class="attachment-details">
-                            <div class="attachment-name">Social_Media_Posts</div>
-                            <div class="attachment-meta">156 KB</div>
-                        </div>
+                    <div class="input-right">
+                        <div class="model-selector">Claude 3 Opus</div>
+                        <button class="send-btn">
+                            <svg class="icon" viewBox="0 0 16 16" fill="white">
+                                <path d="M2 8L14 2V7L8 8L14 9V14L2 8Z" fill="white"/>
+                            </svg>
+                        </button>
                     </div>
-                </div>
-                <div class="message-actions">
-                    <button class="btn-primary" onclick="window.open('https://claude.ai', '_blank')">Try in Claude</button>
-                    <button class="btn-secondary">Copy prompt</button>
                 </div>
             </div>
 
-            <!-- First Claude Response -->
-            <div class="message message-claude" id="claude-1">
+            <!-- Show MCP nudge after user message -->
+            <script>
+                setTimeout(() => {
+                    showMCPNudge();
+                }, 1000);
+            </script>
+            </div>
+
+            <!-- MCP Nudge (initially hidden) -->
+            <div class="mcp-nudge hidden" id="mcp-nudge">
+                <span class="nudge-arrow">↑</span>
+                <span>Click the <strong>+</strong> button to connect data sources for deeper analysis</span>
+            </div>
+
+            <!-- Google Drive Connector (initially hidden) - same width as chat input -->
+            <div class="chat-input-section hidden" id="google-drive-section">
+                <div class="chat-input-container" style="padding: 20px; align-items: center;">
+                    <div class="mcp-connector" id="google-drive-connector" style="width: 100%; margin: 0; border: none; background: transparent; padding: 0;">
+                        <div class="connector-left">
+                            <div class="connector-icon google-drive-icon">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                                    <path d="M8.5 2L1 14h7.5L16 2H8.5z" fill="white"/>
+                                    <path d="M16 2l7.5 12H16l-7.5-12H16z" fill="white"/>
+                                    <path d="M1 14l4.5 8 3.75-6H1z" fill="white"/>
+                                    <path d="M8.5 14l-4 8h15l4-8H8.5z" fill="white"/>
+                                </svg>
+                            </div>
+                            <div class="connector-info">
+                                <h4>Google Drive Search</h4>
+                                <p>Access and analyze documents from your Google Drive</p>
+                            </div>
+                        </div>
+                        <div class="toggle-switch toggle-pulse" id="google-drive-toggle" onclick="toggleGoogleDrive()">
+                            <div class="toggle-slider"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- First Claude Response (hidden until MCP enabled) -->
+            <div class="message message-claude hidden" id="claude-1">
                 <div class="claude-avatar">C</div>
                 <div class="claude-content">
                     <div class="claude-text">
@@ -1709,7 +1976,7 @@
                     </div>
 
                     <div class="chat-input-section">
-                        <div class="suggestion-pills" id="suggestions-1">
+                        <div class="suggestion-pills" id="suggestions-1-claude">
                             <div class="suggestion-pill" onclick="selectSuggestion(this, 1, 'Create the complete style guide')">
                                 Create complete style guide
                             </div>
@@ -1720,15 +1987,11 @@
                                 <button class="input-btn">+</button>
                             </div>
                             <div class="input-field-container">
-                                <textarea class="input-field" id="input-field-1" placeholder="Reply to Claude..." rows="1"></textarea>
+                                <textarea class="input-field" id="input-field-1-claude" placeholder="Continue the conversation..." rows="1"></textarea>
                             </div>
                             <div class="input-right">
                                 <div class="model-selector">Claude 3 Opus</div>
-                                <button class="send-btn" disabled>
-                                    <svg class="icon" viewBox="0 0 16 16" fill="white">
-                                        <path d="M2 8L14 2V7L8 8L14 9V14L2 8Z" fill="white"/>
-                                    </svg>
-                                </button>
+                                <button class="send-btn" disabled>→</button>
                             </div>
                         </div>
                     </div>
@@ -2234,6 +2497,8 @@
     <script>
         let currentStep = 1;
         let currentSlide = 0;
+        let mcpEnabled = false;
+        let showingNudge = false;
 
         function scrollToChat() {
             document.getElementById('chat-section').scrollIntoView({ 
@@ -2275,6 +2540,11 @@
         }
 
         function selectSuggestion(pill, step, text) {
+            // Only allow interaction if MCP is enabled for step 1
+            if (step === 1 && !mcpEnabled) {
+                return; // Don't proceed if MCP not enabled
+            }
+            
             pill.classList.add('selected');
             const container = pill.parentElement;
             container.querySelectorAll('.suggestion-pill').forEach(p => {
@@ -2283,7 +2553,13 @@
                 }
             });
 
-            document.getElementById(`input-field-${step}`).value = text;
+            // Update the correct input field
+            const inputField = step === 1 ? 
+                document.getElementById('input-field-1') : 
+                document.getElementById(`input-field-${step}`);
+            if (inputField) {
+                inputField.value = text;
+            }
 
             updateProgress(step + 1);
 
@@ -2314,6 +2590,63 @@
                         document.getElementById('claude-4').classList.remove('hidden');
                     }, 800);
                 }
+            }
+        }
+
+        function showMCPNudge() {
+            if (!mcpEnabled && !showingNudge) {
+                showingNudge = true;
+                const nudge = document.getElementById('mcp-nudge');
+                const plusBtn = document.getElementById('plus-btn');
+                nudge.classList.remove('hidden');
+                plusBtn.classList.add('blink');
+            }
+        }
+
+        function showMCPPanel() {
+            const section = document.getElementById('google-drive-section');
+            const nudge = document.getElementById('mcp-nudge');
+            const plusBtn = document.getElementById('plus-btn');
+            
+            // Hide nudge and stop blinking
+            nudge.classList.add('hidden');
+            plusBtn.classList.remove('blink');
+            
+            // Show Google Drive section (already has pulsing toggle)
+            section.classList.remove('hidden');
+        }
+
+        function toggleGoogleDrive() {
+            const toggle = document.getElementById('google-drive-toggle');
+            const connector = document.getElementById('google-drive-connector');
+            const claudeResponse = document.getElementById('claude-1');
+            
+            if (!mcpEnabled) {
+                // Enable Google Drive
+                mcpEnabled = true;
+                toggle.classList.add('enabled');
+                toggle.classList.remove('toggle-pulse'); // Stop pulsing
+                connector.classList.add('enabled');
+                
+                // Show Claude's first response after a short delay
+                setTimeout(() => {
+                    claudeResponse.classList.remove('hidden');
+                    updateProgress(2);
+                    // Add the suggestion pill back to Claude's response
+                    document.getElementById('suggestions-1-claude').innerHTML = `
+                        <div class="suggestion-pill" onclick="selectSuggestion(this, 1, 'Create the complete style guide')">
+                            Create complete style guide
+                        </div>
+                    `;
+                }, 800);
+            } else {
+                // Disable Google Drive
+                mcpEnabled = false;
+                toggle.classList.remove('enabled');
+                toggle.classList.add('toggle-pulse'); // Resume pulsing
+                connector.classList.remove('enabled');
+                claudeResponse.classList.add('hidden');
+                updateProgress(1);
             }
         }
 
@@ -2353,7 +2686,7 @@
 
         // Auto-cycle carousel
         setInterval(() => {
-            const nextSlide = (currentSlide + 1) % 3;
+            const nextSlide = (currentSlide + 1) % 4;
             showSlide(nextSlide);
         }, 4000);
 
