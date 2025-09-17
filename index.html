@@ -1262,6 +1262,33 @@
             background: #faf9f8;
         }
 
+        /* Simple Retry Section */
+        .simple-retry-section {
+            margin-top: 40px;
+            padding: 24px;
+            text-align: center;
+        }
+
+        .simple-retry-btn {
+            padding: 12px 32px;
+            background: #bf7358;
+            color: white;
+            border: none;
+            border-radius: 100px;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .simple-retry-btn:hover {
+            background: #a86348;
+            transform: translateY(-1px);
+        }
+
         /* MCP Panel */
         .mcp-panel {
             background: white;
@@ -2409,7 +2436,18 @@
                         <div class="action-right">
                             <button class="copy-btn">Copy</button>
                             <button class="share-btn">Share</button>
+                            <button class="retry-btn" onclick="retryResponse(3)">Retry ↻</button>
                         </div>
+                    </div>
+
+                    <!-- Simple Retry Section -->
+                    <div class="simple-retry-section">
+                        <button class="simple-retry-btn" onclick="fullRestart()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
+                                <path d="M8 2v4l3-3m0 0l-3-3m3 3H5a3 3 0 000 6h4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Try Again
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2487,7 +2525,18 @@
                         <div class="action-right">
                             <button class="copy-btn">Copy</button>
                             <button class="share-btn">Share</button>
+                            <button class="retry-btn" onclick="retryResponse(4)">Retry ↻</button>
                         </div>
+                    </div>
+
+                    <!-- Simple Retry Section -->
+                    <div class="simple-retry-section">
+                        <button class="simple-retry-btn" onclick="fullRestart()">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="white">
+                                <path d="M8 2v4l3-3m0 0l-3-3m3 3H5a3 3 0 000 6h4" stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                            Try Again
+                        </button>
                     </div>
                 </div>
             </div>
@@ -2651,24 +2700,102 @@
         }
 
         function retryResponse(step) {
-            const suggestions = document.getElementById(`suggestions-${step}`);
-            suggestions.querySelectorAll('.suggestion-pill').forEach(pill => {
-                pill.classList.remove('selected', 'fading');
-            });
-            
-            document.getElementById(`input-field-${step}`).value = '';
-            
+            // Small retry button - goes back to previous choice point
             if (step === 1) {
+                // Reset to beginning of Claude's first response
+                const suggestions = document.getElementById('suggestions-1-claude');
+                if (suggestions) {
+                    suggestions.querySelectorAll('.suggestion-pill').forEach(pill => {
+                        pill.classList.remove('selected', 'fading');
+                    });
+                }
                 document.getElementById('user-2').classList.add('hidden');
                 document.getElementById('claude-2').classList.add('hidden');
+                updateProgress(2);
             } else if (step === 2) {
+                // Reset from style guide creation
+                const suggestions = document.getElementById('suggestions-2');
+                if (suggestions) {
+                    suggestions.querySelectorAll('.suggestion-pill').forEach(pill => {
+                        pill.classList.remove('selected', 'fading');
+                    });
+                }
                 document.getElementById('user-3').classList.add('hidden');
                 document.getElementById('claude-3').classList.add('hidden');
                 document.getElementById('user-4').classList.add('hidden');
                 document.getElementById('claude-4').classList.add('hidden');
+                updateProgress(3);
+            } else if (step === 3) {
+                // Small retry for email templates - go back to email/training choice
+                document.getElementById('claude-3').classList.add('hidden');
+                document.getElementById('user-3').classList.add('hidden');
+                // Show the suggestion pills again in Claude 2's response
+                const claudeResponse = document.getElementById('claude-2');
+                const suggestions = claudeResponse.querySelector('#suggestions-2');
+                if (suggestions) {
+                    suggestions.innerHTML = `
+                        <div class="suggestion-pill" onclick="selectSuggestion(this, 2, 'Generate email templates')">
+                            Generate email templates
+                        </div>
+                        <div class="suggestion-pill" onclick="selectSuggestion(this, 2, 'Create training deck')">
+                            Create training deck
+                        </div>
+                    `;
+                }
+            } else if (step === 4) {
+                // Small retry for training deck - go back to email/training choice
+                document.getElementById('claude-4').classList.add('hidden');
+                document.getElementById('user-4').classList.add('hidden');
+                // Show the suggestion pills again in Claude 2's response
+                const claudeResponse = document.getElementById('claude-2');
+                const suggestions = claudeResponse.querySelector('#suggestions-2');
+                if (suggestions) {
+                    suggestions.innerHTML = `
+                        <div class="suggestion-pill" onclick="selectSuggestion(this, 2, 'Generate email templates')">
+                            Generate email templates
+                        </div>
+                        <div class="suggestion-pill" onclick="selectSuggestion(this, 2, 'Create training deck')">
+                            Create training deck
+                        </div>
+                    `;
+                }
             }
+        }
+
+        function fullRestart() {
+            // Full restart - go all the way back to beginning
+            // Reset MCP state
+            mcpEnabled = false;
+            showingNudge = false;
             
-            updateProgress(step);
+            // Hide all responses
+            document.getElementById('claude-1').classList.add('hidden');
+            document.getElementById('user-2').classList.add('hidden');
+            document.getElementById('claude-2').classList.add('hidden');
+            document.getElementById('user-3').classList.add('hidden');
+            document.getElementById('claude-3').classList.add('hidden');
+            document.getElementById('user-4').classList.add('hidden');
+            document.getElementById('claude-4').classList.add('hidden');
+            
+            // Hide MCP elements
+            document.getElementById('mcp-nudge').classList.add('hidden');
+            document.getElementById('google-drive-section').classList.add('hidden');
+            
+            // Reset MCP toggle
+            const toggle = document.getElementById('google-drive-toggle');
+            const connector = document.getElementById('google-drive-connector');
+            toggle.classList.remove('enabled');
+            toggle.classList.add('toggle-pulse');
+            connector.classList.remove('enabled');
+            
+            // Reset progress
+            updateProgress(1);
+            
+            // Restart the flow
+            setTimeout(() => {
+                document.getElementById('plus-btn').classList.add('blink');
+                showMCPNudge();
+            }, 500);
         }
 
         // Auto-resize textarea
